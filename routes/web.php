@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
+Route::middleware('auth:login')->get('/', function () {
     return view('welcome');
 });
+
+
+//Create Movie
+Route::get('/add', function () {
+    return view('createMovie');
+});
+//read
+Route::get('/list', function () {
+    return view('listMovie');
+});
+//Update
+
+//Delete
+
+
+
+
