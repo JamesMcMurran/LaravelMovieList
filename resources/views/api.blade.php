@@ -20,14 +20,14 @@
                                 </div>
 
                                 <div class="links">
-                                    Send requests to butterflywinds.com/api/list?api_token={{ Auth::user()->api_token }}<br/>
+                                    Send requests to http://butterflywinds.com/api/ENDPOINT?api_token=YOUR_TOKEN<br/>
                                     <br/>
-                                    Method GET - <br/><br/>
-                                    api/list<br/>
+                                    -- Method GET -- <br/><br/>
+                                    <a href="http://butterflywinds.com/api/list?name=New Movie&api_token={{ Auth::user()->api_token }}">/api/list</a><br/>
                                     This will give you the list of the movies.<br/>
                                     <br/>
                                     <br/>
-                                    api/store?name=New Movie&api_token={{ Auth::user()->api_token }}<br/>
+                                    <a href="http://butterflywinds.com/api/store?name=New Movie&api_token={{ Auth::user()->api_token }}">/api/store</a><br/>
                                     This will let add a new movie name.<br/>
                                 </div>
 

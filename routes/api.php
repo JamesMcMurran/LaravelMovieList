@@ -22,9 +22,9 @@ Route::middleware('auth:api')->get('list', function (Request $request) {
     return Movie::all();
 });
 
-Route::middleware('auth:api')->get('store', function (Request $request) {
+Route::middleware('auth:api')->post('store', function (Request $request) {
    		try {
-
+   			
 			request()->validate([
 				'name' => ['required', 'min:3']
 			]);
