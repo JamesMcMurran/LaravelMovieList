@@ -11,23 +11,20 @@
 |
 */
 
-Route::middleware('auth:login')->get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-
-//Create Movie
 Route::get('/add', function () {
-    return view('createMovie');
+    return view('create');
 });
 //read
-Route::get('/list', function () {
-    return view('listMovie');
-});
+Route::get('/list', 'MoviesController@read');
+
 //Update
 
 //Delete
 
+Auth::routes();
 
-
-
+Route::get('/home', 'HomeController@index')->name('home');
