@@ -15,9 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/add', function () {
-    return view('create');
-});
+
+Route::get('/add', 'MoviesController@create');
+
+Route::post('/moive', 'MoviesController@store');
+
+Route::get('/home', 'MoviesController@home');
+
+
 //read
 Route::get('/list', 'MoviesController@read');
 
@@ -26,5 +31,3 @@ Route::get('/list', 'MoviesController@read');
 //Delete
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
