@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Movie;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth:api')->get('list', function (Request $request) {
+    return Movie::all();
+});
+
+Route::middleware('auth:api')->get('store', function (Request $request) {
+   		try {
+
+			request()->validate([
+				'name' => ['required', 'min:3']
+			]);
+
+			Movie::create([
+				'name' => request('name')
+			]);
+			
+			return "Thank you.";
+		}
+		catch (exception $e) {
+		    return "An error has happend please check your request.";
+		}
 });

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
@@ -22,6 +22,7 @@ Route::post('/moive', 'MoviesController@store');
 
 Route::get('/home', 'MoviesController@home');
 
+Route::get('/api', 'MoviesController@api');
 
 //read
 Route::get('/list', 'MoviesController@read');

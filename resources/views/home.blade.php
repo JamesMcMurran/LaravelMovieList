@@ -8,9 +8,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    <div class="alert alert-success" role="alert">
-                        Welcome please add a movie to the group movie index.
-                    </div>
+                    Welcome this is a simple page to add movies to a list.
                 </div>
             </div>
         </div>
