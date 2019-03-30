@@ -23,12 +23,15 @@
                                     Send requests to http://butterflywinds.com/api/ENDPOINT?api_token=YOUR_TOKEN<br/>
                                     <br/>
                                     -- Method GET -- <br/><br/>
-                                    <a href="http://butterflywinds.com/api/list?name=New Movie&api_token={{ Auth::user()->api_token }}">/api/list</a><br/>
+                                    <a href="http://butterflywinds.com/api?api_token={{ Auth::user()->api_token }}">/api/</a><br/>
                                     This will give you the list of the movies.<br/>
                                     <br/>
                                     <br/>
-                                    <a href="http://butterflywinds.com/api/store?name=New Movie&api_token={{ Auth::user()->api_token }}">/api/store</a><br/>
+                                    <a href="http://butterflywinds.com/api/store?name=New Movie&poster_url='/w500/ezIurBz2fdUc68d98Fp9dRf5ihv.jpg'&api_token={{ Auth::user()->api_token }}">/api/store</a><br/>
                                     This will let add a new movie name.<br/>
+                                    name="The name of the movie you would like to add."<br/>
+                                    poster_url="This is the themoviedb.org image URL. Such as /w500/ezIurBz2fdUc68d98Fp9dRf5ihv.jpg"
+                                    <br/>
                                 </div>
 
 

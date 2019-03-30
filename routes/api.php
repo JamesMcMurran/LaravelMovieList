@@ -18,15 +18,12 @@ Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('list', function (Request $request) {
-    return Movie::all();
-});
-
 Route::middleware('auth:api')->post('store', function (Request $request) {
    		try {
    			
 			request()->validate([
-				'name' => ['required', 'min:3']
+				'name' 			=> ['required', 'min:3'],
+				'poster_url'	=> ['required','min:3']
 			]);
 
 			Movie::create([
@@ -38,4 +35,10 @@ Route::middleware('auth:api')->post('store', function (Request $request) {
 		catch (exception $e) {
 		    return "An error has happend please check your request.";
 		}
+});
+
+
+
+Route::middleware('auth:api')->get('/', function (Request $request) {
+    return Movie::all();
 });

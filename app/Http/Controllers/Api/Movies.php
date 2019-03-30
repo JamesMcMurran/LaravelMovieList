@@ -35,15 +35,21 @@ class Movies extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {            $moviesarray[$key]['creator']=substr($movie->user->name, 0, 10);
+
         request()->validate([
-			'name' => ['required', 'min:3']
-		]);
+            'name'          => ['required', 'min:3'],
+            'poster_url'    => ['required','min:3']
+        ]);
 
+        Movie::create([
+            'name'          => request('name'),
+            'user_id'       => Auth::id(),
+            'movie_db_id'   =>request('movie_db_id'),
+            'poster_url'    =>request('poster_url'),
+            
+        ]);
 
-		Movie::create([
-			'name' => request('name')
-		]);
     }
 
     /**

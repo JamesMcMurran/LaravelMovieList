@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style type="text/css">
+  .floatleft{
+    float: left,
+    width='125'
+  }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -21,20 +27,21 @@
 
                     <div class="content">
                         @auth
-                        <form method="POST" action="/moive">
-                            {{csrf_field()}}
+                        
+                            
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="textinput">Movie Name</label>  
-                          <div class="col-md-5">
-                          <input id="name" name="name" type="text" placeholder="Name of Movie" class="form-control input-md" required="">
-                          <span class="help-block">The name of the movie</span>  
+                          <div class="col-md-6">
+                            <input id="name" name="name" type="text" placeholder="Name of Movie" class="form-control input-md" required=""  onkeydown="if (event.keyCode == 13) { search(); return false; }">
+                            <button type="button" onclick="search()">
+                              Search
+                            </button>
+                             
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <label class="col-md-4 control-label" for="Submit"></label>
-                          <div class="col-md-4">
-                            <button id="Submit" name="Submit" class="btn btn-primary">Add movie to your list</button>
+                          <div id="results">
+
                           </div>
                         </div>
                         @else
@@ -48,4 +55,35 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+ function search(){
+   $.getJSON( "/search?name="+ $("#name").val(), function( data ) {
+      var items = [];
+      token = '{{ csrf_field() }}';
+      $.each( data.results, function( key, val ) {
+        items.push( '<div class="floatleft" id="' + val.id + '" style="float: left; width:125px; height:300px" >\
+          <form method="POST" action="/movie">\
+          '+token+'\
+        <img id="moviePoster' + val.id + '" src="https://image.tmdb.org/t/p/w500'+val.poster_path+'" width="125px" alt="' + val.title + '" >'+ val.title + '\
+            <input type="hidden" id="movie_db_id" name="movie_db_id" value="'+val.id+'">\
+            <input type="hidden" id="poster_url"  name="poster_url" value="' + val.poster_path + '">\
+            <input type="hidden" id="name"        name="name" value="' + val.title + '">\
+            </br><button>Add Movie</button>\
+            </form></div>' );
+      });
+     
+      $( "#results" ).empty(); 
+
+      $( "<ul/>", {
+        "class": "my-new-list",
+        html: items.join( "" )
+      }).appendTo( "#results" );
+    });
+ }
+
+
+
+</script>
 @endsection

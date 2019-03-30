@@ -13,7 +13,10 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        
+        'password',
+        'password_confirmation',
+        'MAIL_PASSWORD'
     ];
 
     /**
@@ -24,6 +27,7 @@ class Handler extends ExceptionHandler
     protected $dontFlash = [
         'password',
         'password_confirmation',
+        'MAIL_PASSWORD'
     ];
 
     /**
@@ -46,6 +50,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        unset($_ENV);
+        $_ENV['EMPTY']="";
+        
+        //dd($request->server->parameters->SERVER_NAME);
         return parent::render($request, $exception);
     }
 }
